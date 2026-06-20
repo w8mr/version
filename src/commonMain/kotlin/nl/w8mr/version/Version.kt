@@ -1,3 +1,5 @@
+package nl.w8mr.version
+
 /**
  * Represents a version consisting of four parts: prefix, version part, pre-release part, and build metadata.
  *
@@ -108,6 +110,13 @@ class Version(version: String): Comparable<Version> {
     /** Checks equality by comparing version precedence. */
     override fun equals(other: Any?): Boolean {
         return (other as? Version)?.compareTo(this)==0
+    }
+
+    /** Computes hash code based on version parts and pre-release. */
+    override fun hashCode(): Int {
+        var result = parts.hashCode()
+        result = 31 * result + preRelease.hashCode()
+        return result
     }
 
     /** Returns a detailed string representation of all version parts. */

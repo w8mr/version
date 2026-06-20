@@ -1,3 +1,5 @@
+package nl.w8mr.version
+
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -173,5 +175,23 @@ class TestVersion {
         assertEquals("1", v.major)
         assertEquals("2", v.minor)
         assertEquals("3", v.patch)
+    }
+
+    @Test
+    fun testGroupBy() {
+        val versions = listOf(
+            Version("1.0.0") to "a",
+            Version("1.0.0") to "b",
+            Version("1.0.0") to "c",
+            Version("2.0.0") to "a",
+            Version("2.0.0") to "b",
+            Version("2.1.0") to "a"
+
+        )
+        val groupBy = versions.groupBy { it.first }
+        assertEquals(3, groupBy["1.0.0".toVersion()]?.size)
+        assertEquals(2, groupBy["2.0.0".toVersion()]?.size)
+        assertEquals(1, groupBy["2.1.0".toVersion()]?.size)
+
     }
 }

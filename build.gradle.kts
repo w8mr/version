@@ -1,7 +1,7 @@
 import com.vanniktech.maven.publish.KotlinMultiplatform
 
 group = "nl.w8mr"
-version = "0.0.1"
+version = "0.0.4"
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)

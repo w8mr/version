@@ -17,6 +17,7 @@ A version in this project consists of **four parts**:
 #### Example: Empty Parts Treated as Zero
 - `1..1` → major=`1`, minor=`0`, patch=`1`
 - `1.2.3-alpha..1` → preRelease=`["alpha", "0", "1"]`
+- Accessing out-of-range subparts (e.g., `part(4)` for `1.2.3`) returns `"0"`.
 
 ### Major Version Number
 - The **major version number** (the first part of the Version Part) **must be a number** (e.g., `1` in `1.2.3`).
@@ -59,6 +60,12 @@ println(v2.prefix) // "v"
 println(v2.preRelease) // ["alpha", "1"]
 println(v2.buildMetadata) // ["build", "20251121"]
 
+// Empty parts are treated as "0"
+val v = Version("1..1")
+println(v.major) // "1"
+println(v.minor) // "0"
+println(v.patch) // "1"
+```
 
 ### Comparing Versions
 
